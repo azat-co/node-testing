@@ -1,7 +1,5 @@
 var should = require('chai').should(),
-    scapegoat = require('../index.js')(),
-    escape = scapegoat.escape,
-    unescape = scapegoat.unescape;
+    {escape, unescape} = require('../index.js')();
 
 describe('#escape', function() {
   it('converts & into &amp;', function() {
