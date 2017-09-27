@@ -1,46 +1,46 @@
-var expect = require('chai').expect,
+const {expect} = require('chai'),
     {escape, unescape} = require('../index.js')();
 
-describe('#escape', function() {
-  it('converts & into &amp;', function() {
+describe('#escape', () => {
+  it('converts & into &amp;', () => {
     expect(escape('&')).equal('&amp;');
   });
 
-  it('converts " into &quot;', function() {
+  it('converts " into &quot;', () => {
     expect(escape('"')).equal('&quot;');
   });
 
-  it('converts \' into &#39;', function() {
+  it('converts \' into &#39;', () => {
     expect(escape('\'')).equal('&#39;');
   });
 
-  it('converts < into &lt;', function() {
+  it('converts < into &lt;', () => {
     expect(escape('<')).equal('&lt;');
   });
 
-  it('converts > into &gt;', function() {
+  it('converts > into &gt;', () => {
     expect(escape('>')).equal('&gt;');
   });
 });
 
-describe('#unescape', function() {
-  it('converts &amp; into &', function() {
+describe('#unescape', () => {
+  it('converts &amp; into &', () => {
     expect(unescape('&amp;')).equal('&');
   });
 
-  it('converts &quot; into "', function() {
+  it('converts &quot; into "', () => {
     expect(unescape('&quot;')).equal('"');
   });
 
-  it('converts &#39; into \'', function() {
+  it('converts &#39; into \'', () => {
     expect(unescape('&#39;')).equal('\'');
   });
 
-  it('converts &lt; into <', function() {
+  it('converts &lt; into <', () => {
     expect(unescape('&lt;')).equal('<');
   });
 
-  it('converts &gt; into >', function() {
+  it('converts &gt; into >', () => {
     expect(unescape('&gt;')).equal('>');
   });
 });

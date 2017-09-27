@@ -6,7 +6,7 @@ module.exports = (ops) => {
    * @param  {String} html
    * @return {String}
    */
-  escape: function(html) {
+  escape: (html) => {
     return String(html)
       .replace(/&/g, '&amp;')
       .replace(/"/g, '&quot;')
@@ -22,7 +22,7 @@ module.exports = (ops) => {
    * @return {String}
    */
 
-  unescape: function(html) {
+  unescape: (html) => {
     return String(html)
       .replace(/&amp;/g, '&')
       .replace(/&quot;/g, '"')
