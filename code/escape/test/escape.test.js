@@ -1,8 +1,11 @@
+const assert = require('assert')
+
 const {expect} = require('chai'),
     {escape, unescape} = require('../index.js')()
 
 describe('#escape', () => {
   it('converts & into &amp;', () => {
+    assert.equal(escape('&'), '&amp;')    
     expect(escape('&')).equal('&amp;')
   })
 

@@ -143,6 +143,15 @@ Azat Mardan @azat_co
 
 ---
 
+## Writing Unit tests
+
+1. Testing Framework (Setup)
+1. Import module from tests
+1. Unit test for each method: provide input and compare output
+
+---
+
+
 ## Testing Framework
 
 * Mocha
@@ -172,34 +181,195 @@ Converts special characters to HTML code
 
 ---
 
+
 ```
 mkdir escape
 cd escape
 npm init -y
 npm i mocha@3.5.0 chai@4.1.2 -E
-mkdir tests
+mkdir test
 ```
 
 ---
 
+Run tests from `test` folder:
+
+```
+mocha
+npm test
+```
+
+package.json:
+
+```
+  "scripts": {
+    "test": "mocha"
+  },
+```
+
+---
+
+
+
 ## Describe and it
 
+Describe and it: noun and behavior
+
+```js
+const {expect} = require('chai'),
+    {escape, unescape} = require('../index.js')()
+describe('#escape', () => {
+  it('converts & into &amp;', () => {
+    expect(escape('&')).equal('&amp;')
+  })
+})
+```
 
 ---
 
-* TDD assertion
-* BDD style: Chai expect
+## Asynchronous it
+
+```js
+const {expect} = require('chai'),
+    {escape, unescape} = require('../index.js')()
+
+describe('#escape', () => {
+  it('converts & into &amp;', (done) => {
+    setTimeout(()=>{
+      expect(escape('&')).equal('&amp;')
+      done()
+    }, 1000)
+  })
+})
+```
 
 ---
 
-## Module 2: Unit testing (cont)
+```js
+describe('User', function() {
+  describe('#save()', function() {
+    it('should save without error', function(done) {
+      var user = new User('Luna')
+      user.save(function(err) {
+        if (err) done(err)
+        else done()
+      })
+    })
+  })
+})
+```
 
-* after and before
-* each and afterEach, beforeEach
-* Writing unit tests
-* (TDD+ BDD): Mocha, Expect, Jest, Superagent, Unit and Functional/Integration Testing
+---
 
-Create Node Testing with Mocha for unit testing, then for REST API and for UI testing (e2e)
+## Async/await it
+
+```js
+describe('#find()', function() {
+  it('responds with matching records', async function() {
+    const users = await db.find({type: 'User'})
+    users.should.have.length(3)
+  })
+})
+```
+
+---
+
+## TDD Assertion
+
+* Core module <https://nodejs.org/api/assert.html>
+* Basic methods
+* Throws errors
+
+---
+
+## Assert Example
+
+```js
+const assert = require('assert')
+assert.equal(1, 1) // OK, 1 == 1
+assert.equal(1, '1') // OK, 1 == '1'
+```
+
+---
+
+
+```js
+const assert = require('assert')
+
+describe('#escape', () => {
+  it('converts & into &amp;', () => {    
+    assert.equal(escape('&'), '&amp;')
+  })
+})
+```
+
+---
+
+## BDD style: Chai Expect
+
+* Chai npm library <http://chaijs.com/api/bdd>
+* A lot of methods
+* Language Chains (readability)
+
+---
+
+## Chai Expect
+
+```js
+expect(function () {}).to.not.throw()
+expect({a: 1}).to.not.have.property('b')
+expect([1, 2]).to.be.an('array').that.does.not.include(3)
+expect(2).to.equal(2)
+expect({a: 1}).to.deep.equal({a: 1})
+expect({a: 1}).to.not.equal({a: 1})
+```
+
+---
+
+## after and before
+
+```js
+describe('#escape', () => {
+
+  before(() => {
+    // runs before all tests in this block
+  })
+
+  after(() => {
+    // runs after all tests in this block
+  })
+
+  // test cases
+  it()
+  it()
+  it()
+})
+```
+
+---
+
+## afterEach and beforeEach
+
+```js
+describe('#escape', () => {
+  beforeEach(() => {
+    // runs before each test in this block
+  })
+
+  afterEach(() => {
+    // runs after each test in this block
+  })
+
+  // test cases
+  it()
+  it()
+  it()  
+})
+```
+
+---
+
+## Demo escape Module Unite Testing
 
 ---
 
@@ -218,6 +388,12 @@ Azat Mardan @azat_co
 * Testing CRUD REST API server (Mocking)
 * Testing CRUD REST API server (real)
 * Testing GraphQL server
+
+
+## (TDD+ BDD): Mocha, Expect, Jest, Superagent, Unit and Functional/Integration Testing
+
+
+Create Node Testing with Mocha for unit testing, then for REST API and for UI testing (e2e)
 
 ---
 
