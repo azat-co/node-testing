@@ -1,4 +1,4 @@
-var expect = require('chai').expect(),
+var expect = require('chai').expect,
     {escape, unescape} = require('../index.js')();
 
 describe('#escape', function() {
