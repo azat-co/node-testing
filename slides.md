@@ -96,9 +96,45 @@ Azat Mardan @azat_co
 
 ---
 
+## What to expect
+
+* Unit testing
+* API testing
+* UI testing
+* CI/CD
+* Best tech stack
+* No B.S. - Only necessary stuff
+
+---
+
+## Why testing is important
+
+* Save time in the long-term
+* Catch bugs -> better quality of software
+* Automate deployment -> faster iteration -> better product
+* Get confidence during refactor
+* Document interface
+
+---
+
+## Testing Pyramid
+
+![inline](images/test-pyramid.png)
+
+---
+
+## What you need
+
+* Node v8+
+* npm v5+
+* Terminal
+* Code editor
+* [Selenium WebDriver server and Node client](http://www.seleniumhq.org/download/)
+
+---
 
 # Node Testing
-## Module 2: Unit testings
+## Module 2: Unit Testing
 
 ![inline 100%](images/azat.jpeg)
 Azat Mardan @azat_co
@@ -107,11 +143,50 @@ Azat Mardan @azat_co
 
 ---
 
+## Testing Framework
 
-## Module 2: Unit testing
+* Mocha
+* Chai Expect
 
-* Setting up testing framework: Mocha, Expect, Axios
-* Describe, `it`
+---
+
+## Setting up Testing Framework
+
+1. Create a new folder
+2. Create package.json
+3. Install dependencies
+4. Write sample tests
+5. Write sample code
+
+---
+
+## Escape Module
+
+Converts special characters to HTML code
+
+* `&` into `&amp;`
+* `"` into `&quot;`
+* `'` into `&#39;`
+* `<` into `&lt;`
+* `>` into `&gt;`
+
+---
+
+```
+mkdir escape
+cd escape
+npm init -y
+npm i mocha@3.5.0 chai@4.1.2 -E
+mkdir tests
+```
+
+---
+
+## Describe and it
+
+
+---
+
 * TDD assertion
 * BDD style: Chai expect
 
