@@ -1,19 +1,17 @@
-const superagent = require('superagent')
+const supertest = require('supertest')
 const {expect} = require('chai')
 const app = require('../server.js')
 const port = 3002
-before((done)=>{
-  app.listen(port, done)
-})
 
 describe('express rest api server', () => {
   let id
 
   it('posts an object', (done) => {
-    superagent.post(`http://localhost:${port}/collections/test`)
+    supertest(app).post(`/collections/test`)
       .send({ name: 'John'
         , email: 'john@rpjs.co'
       })
+      .expect(200)
       .end((e, res) => {
         // console.log(res.body)
         expect(e).to.eql(null)
@@ -25,7 +23,7 @@ describe('express rest api server', () => {
   })
 
   it('retrieves an object', (done) => {
-    superagent.get(`http://localhost:${port}/collections/test/${id}`)
+    supertest(app).get(`/collections/test/${id}`)
       .end((e, res) => {
         // console.log(res.body)
         expect(e).to.eql(null)
@@ -38,7 +36,7 @@ describe('express rest api server', () => {
   })
 
   it('retrieves a collection', (done) => {
-    superagent.get(`http://localhost:${port}/collections/test`)
+    supertest(app).get(`/collections/test`)
       .end((e, res) => {
         // console.log(res.body)
         expect(e).to.eql(null)
@@ -49,7 +47,7 @@ describe('express rest api server', () => {
   })
 
   it('updates an object', (done) => {
-    superagent.put(`http://localhost:${port}/collections/test/${id}`)
+    supertest(app).put(`/collections/test/${id}`)
       .send({name: 'Peter'
         , email: 'peter@yahoo.com'})
       .end((e, res) =>{
@@ -62,7 +60,7 @@ describe('express rest api server', () => {
   })
 
   it('checks an updated object', (done) => {
-    superagent.get(`http://localhost:${port}/collections/test/${id}`)
+    supertest(app).get(`/collections/test/${id}`)
       .end((e, res) => {
         // console.log(res.body)
         expect(e).to.eql(null)
@@ -74,7 +72,7 @@ describe('express rest api server', () => {
       })
   })
   it('removes an object', (done) => {
-    superagent.del(`http://localhost:${port}/collections/test/${id}`)
+    supertest(app).del(`/collections/test/${id}`)
       .end((e, res) => {
         // console.log(res.body)
         expect(e).to.eql(null)
@@ -84,7 +82,7 @@ describe('express rest api server', () => {
       })
   })
   it('checks an removed object', (done) => {
-    superagent.get(`http://localhost:${port}/collections/test/`)
+    supertest(app).get(`/collections/test/`)
       .end((e, res) => {
         // console.log(res.body)
         expect(e).to.eql(null)
