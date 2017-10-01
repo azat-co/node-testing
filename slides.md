@@ -385,15 +385,40 @@ Azat Mardan @azat_co
 
 ## Module 3: Functional/integration testing
 
-* Testing CRUD REST API server (Mocking)
-* Testing CRUD REST API server (real)
-* Testing GraphQL server
+---
 
+## Testing CRUD REST API server (Mocking)
 
-## (TDD+ BDD): Mocha, Expect, Jest, Superagent, Unit and Functional/Integration Testing
+* Supertest
+* Chai Expect
+* Mocha
 
+---
 
-Create Node Testing with Mocha for unit testing, then for REST API and for UI testing (e2e)
+Demo Testing CRUD REST API server (Mocking)
+
+---
+
+## Testing CRUD REST API server (real)
+
+* Axios
+* Mocha
+
+---
+
+## Demo Testing CRUD REST API server (real)
+
+---
+
+## Testing GraphQL server
+
+* GraphQL
+* Axios
+* Mocha
+
+---
+
+## Demo Testing GraphQL server
 
 ---
 
@@ -407,7 +432,16 @@ Azat Mardan @azat_co
 
 ---
 
-* Testing UI with Selenium WebDriver
+## Testing UI with Selenium WebDriver
+
+* Selenium WebDriver Server
+* Selenium Node Client
+* Mocha
+* Chai Expect
+
+---
+
+Demo Testing UI with Selenium WebDriver
 
 ---
 
@@ -421,8 +455,11 @@ Azat Mardan @azat_co
 
 ---
 
-* Using CircleCI: creating yml config
-* Using AWS and Jenkins
+## CI/CD Using CircleCI: creating yml config
+
+---
+
+## CI/CD Using AWS and Jenkins
 
 ---
 
