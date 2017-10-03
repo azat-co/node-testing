@@ -5,7 +5,9 @@ const port = 3002
 
 before(()=>{
   return new Promise((resolve, reject) => {
-    app.listen(port, resolve)
+    return app.listen(port, resolve)
+  }).then(()=>{
+    console.log('server is running')
   })
 })
 

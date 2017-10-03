@@ -217,7 +217,7 @@ Describe and it: noun and behavior
 
 ```js
 const {expect} = require('chai'),
-    {escape, unescape} = require('../index.js')()
+  {escape, unescape} = require('../index.js')()
 describe('#escape', () => {
   it('converts & into &amp;', () => {
     expect(escape('&')).equal('&amp;')
@@ -231,7 +231,7 @@ describe('#escape', () => {
 
 ```js
 const {expect} = require('chai'),
-    {escape, unescape} = require('../index.js')()
+  {escape, unescape} = require('../index.js')()
 
 describe('#escape', () => {
   it('converts & into &amp;', (done) => {
@@ -244,6 +244,8 @@ describe('#escape', () => {
 ```
 
 ---
+
+## Asynchronous it (cont)
 
 ```js
 describe('User', function() {
@@ -261,7 +263,7 @@ describe('User', function() {
 
 ---
 
-## Async/await it
+## Asynchronous it with Async/await
 
 ```js
 describe('#find()', function() {
@@ -270,6 +272,64 @@ describe('#find()', function() {
     users.should.have.length(3)
   })
 })
+```
+
+---
+
+## Asynchronous it with async/await
+
+```js
+describe('#find()', function() {
+  it('responds with matching records', async function() {
+    const users = await db.find({type: 'User'})
+    users.should.have.length(3)
+  })
+})
+```
+
+---
+
+## Asynchronous it with async/await (cont)
+
+```js
+  it('posts an object', async () => {
+    const {data: body} = await axios
+      .post(`http://localhost:${port}/collections/test`, 
+      { name: 'John', email: 'john@rpjs.co'})
+    expect(body.length).to.eql(1)
+    expect(body[0]._id.length).to.eql(24)
+    id = body[0]._id
+  })
+```
+
+---
+
+## Asynchronous it with Promise
+
+```js
+  it('posts an object', () => {
+    return axios
+      .post(`http://localhost:${port}/collections/test`,
+       { name: 'John', email: 'john@rpjs.co'})
+      .then(response=>response.data)
+      .then((body) => {
+        expect(body.length).to.eql(1)
+        expect(body[0]._id.length).to.eql(24)
+        id = body[0]._id
+      })
+  })
+```
+
+---
+
+## only and skip
+
+```js
+  it.only(() => {})
+```
+
+```js
+  it.skip(() => {})
 ```
 
 ---
@@ -352,6 +412,7 @@ describe('#escape', () => {
 
 ```js
 describe('#escape', () => {
+
   beforeEach(() => {
     // runs before each test in this block
   })
@@ -369,7 +430,44 @@ describe('#escape', () => {
 
 ---
 
+## Async before and after
+
+```js
+before((done) => {
+  app.listen(port, ()=>{
+    console.log('server is running')
+    done()
+  })
+})
+```
+
+```js
+before(async function() {
+  await app.listen(port, ()=>{console.log('server is running')})
+  console.log('code after the server is running')
+})
+```
+
+```js
+before(()=>{
+  return new Promise((resolve, reject) => {
+    return app.listen(port, resolve)
+  }).then(()=>{
+    console.log('server is running')
+  })
+})
+```
+
+---
+
 ## Demo escape Module Unite Testing
+
+
+```
+cd code/escape
+npm i
+npm test
+```
 
 ---
 

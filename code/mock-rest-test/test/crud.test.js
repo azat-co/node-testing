@@ -1,7 +1,7 @@
 const supertest = require('supertest')
 const {expect} = require('chai')
 const app = require('../server.js')
-const port = 3002
+
 
 describe('express rest api server', () => {
   let id
