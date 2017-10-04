@@ -4,12 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "PATH=\"./chromedriver2.32/:$PATH\" mocha  --no-timeouts"
   },
   "keywords": [],
   "author": "Azat Mardan (http://azat.co/)",
   "license": "MIT",
   "dependencies": {
+    "chai": "4.1.2",
+    "mocha": "4.0.0",
     "selenium-webdriver": "^3.5.0"
   }
 }
