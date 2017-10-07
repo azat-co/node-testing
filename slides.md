@@ -48,8 +48,6 @@ Azat Mardan @azat_co
 * Writing unit tests
 * (TDD+ BDD): Mocha, Expect, Jest, Superagent, Unit and Functional/Integration Testing
 
-Create Node Testing with Mocha for unit testing, then for REST API and for UI testing (e2e)
-
 ---
 
 ## Module 3: Functional/integration testing
@@ -70,6 +68,14 @@ Create Node Testing with Mocha for unit testing, then for REST API and for UI te
 
 * Using CircleCI: creating yml config
 * Using AWS and Jenkins
+
+---
+
+## Slides & Source Code
+
+<https://github.com/azat-co/node-testing>
+
+---
 
 ## Outro
 
