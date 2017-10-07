@@ -18,7 +18,7 @@ describe('azat.co', () => {
   })
 
   after(() => {
-    driver.sleep(20000)
+    driver.sleep(1000)
     driver.quit()
   })
 })
