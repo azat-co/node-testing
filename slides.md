@@ -1,4 +1,4 @@
-footer: © NodeProgram.com, Node.University and Azat Mardan 2017
+footer: © NodeProgram.com, Node.University and Azat Mardan 2018
 slidenumbers: true
 theme: Simple, 1
 build-lists: true
@@ -6,7 +6,7 @@ build-lists: true
 [.slidenumbers: false] 
 [.hide-footer]
 
-![fit](images/node-testing-cover-2x.png)
+![fit](images/node-testing-cover-2x 16by9.png)
 
 ---
 
@@ -35,23 +35,23 @@ Azat Mardan @azat_co
 ## Module 2: Unit testing
 
 * Setting up testing framework: Mocha, Expect, Axios
-* Describe, `it`
+* `describe()` and `it()`
 * TDD assertion
-* BDD style: Chai expect
+* BDD style: Chai Expect
 
 ---
 
 ## Module 2: Unit testing (cont)
 
-* after and before
-* each and afterEach, beforeEach
+* `after()` and `before()`
+* `afterEach()` and `beforeEach()`
 * Writing unit tests
 
 ---
 
 ## Module 3: Functional/integration testing
 
-* Testing CRUD REST API server (Mocking)
+* Testing CRUD REST API server (mocking)
 * Testing CRUD REST API server (real)
 
 ---
@@ -59,25 +59,20 @@ Azat Mardan @azat_co
 ## Module 4: UI and E2E Testing
 
 * Testing UI with Selenium WebDriver
+* Using CircleCI
 
 ---
 
-## CI/CD
+## Outro
 
-* Using CircleCI: creating yml config
-* Using AWS and Jenkins
+* Further Study
+* Summary
 
 ---
 
 ## Slides & Source Code
 
 <https://github.com/azat-co/node-testing>
-
----
-
-## Outro
-
-* Summary
 
 ---
 
@@ -90,7 +85,6 @@ Azat Mardan @azat_co
 ![inline right](images/nu.png)
 
 ---
-
 
 ## Module 1: Course Overview
 
@@ -133,7 +127,7 @@ Azat Mardan @azat_co
 * npm v5+
 * Terminal
 * Code editor
-* [Selenium WebDriver server and Node client](http://www.seleniumhq.org/download/)
+* [Selenium WebDriver server and Node client](http://www.seleniumhq.org/download)
 
 ---
 
@@ -155,11 +149,16 @@ Azat Mardan @azat_co
 
 ---
 
-
 ## Testing Framework
 
 * Mocha
 * Chai Expect
+
+---
+
+## Testing Framework (cont)
+
+Source code: `code/escape`
 
 ---
 
@@ -185,6 +184,7 @@ Converts special characters to HTML code
 
 ---
 
+## Create from scratch
 
 ```
 mkdir escape
@@ -196,7 +196,7 @@ mkdir test
 
 ---
 
-Run tests from `test` folder:
+## Run tests from `test` folder
 
 ```
 mocha
@@ -213,9 +213,7 @@ package.json:
 
 ---
 
-
-
-## Describe and it
+## `describe()` and `it()`
 
 Describe and it: noun and behavior
 
@@ -231,7 +229,7 @@ describe('#escape', () => {
 
 ---
 
-## Asynchronous it
+## Asynchronous `it()`
 
 ```js
 const {expect} = require('chai'),
@@ -249,7 +247,7 @@ describe('#escape', () => {
 
 ---
 
-## Asynchronous it (cont)
+## Asynchronous `it()` (cont)
 
 ```js
 describe('User', function() {
@@ -267,7 +265,7 @@ describe('User', function() {
 
 ---
 
-## Asynchronous it with Async/await
+## Asynchronous `it()` with Async/await
 
 ```js
 describe('#find()', function() {
@@ -280,20 +278,7 @@ describe('#find()', function() {
 
 ---
 
-## Asynchronous it with async/await
-
-```js
-describe('#find()', function() {
-  it('responds with matching records', async function() {
-    const users = await db.find({type: 'User'})
-    users.should.have.length(3)
-  })
-})
-```
-
----
-
-## Asynchronous it with async/await (cont)
+## Asynchronous `it()` with async/await (cont)
 
 ```js
   it('posts an object', async () => {
@@ -308,7 +293,7 @@ describe('#find()', function() {
 
 ---
 
-## Asynchronous it with Promise
+## Asynchronous `it()` with Promise
 
 ```js
   it('posts an object', () => {
@@ -326,7 +311,7 @@ describe('#find()', function() {
 
 ---
 
-## only and skip
+## `only()` and `skip()`
 
 ```js
   it.only(() => {})
@@ -390,7 +375,7 @@ expect({a: 1}).to.not.equal({a: 1})
 
 ---
 
-## after and before
+## `after()` and `before()`
 
 ```js
 describe('#escape', () => {
@@ -412,7 +397,7 @@ describe('#escape', () => {
 
 ---
 
-## afterEach and beforeEach
+## `afterEach()` and `beforeEach()`
 
 ```js
 describe('#escape', () => {
@@ -434,7 +419,7 @@ describe('#escape', () => {
 
 ---
 
-## Async before and after
+## Async `before()` and `after()`
 
 ```js
 before((done) => {
@@ -466,7 +451,6 @@ before(()=>{
 
 ## Demo escape Module Unite Testing
 
-
 ```
 cd code/escape
 npm i
@@ -489,7 +473,7 @@ Azat Mardan @azat_co
 
 ---
 
-## Testing CRUD REST API server (Mocking)
+## Testing CRUD REST API server (mocking)
 
 * Supertest
 * Chai Expect
@@ -497,7 +481,32 @@ Azat Mardan @azat_co
 
 ---
 
-Demo Testing CRUD REST API server (Mocking)
+## Testing CRUD REST API server (mocking)
+
+Source code: `code/mock-rest-test`
+
+---
+
+## Supertest in Action
+
+```js
+const app = require('../server.js')
+describe('express rest api server', () => {
+  let id
+
+  it('posts an object', (done) => {
+    supertest(app).post(`/collections/test`)
+      .send({ name: 'John'
+        , email: 'john@rpjs.co'
+      })
+      .expect(200)
+  })
+})      
+```
+
+---
+
+## Demo Testing CRUD REST API server (mocking)
 
 ---
 
@@ -505,6 +514,21 @@ Demo Testing CRUD REST API server (Mocking)
 
 * Axios
 * Mocha
+* Chai Expect
+
+---
+
+## Testing CRUD REST API server (real)
+
+Source code: `code/rest-test`
+
+---
+
+## Three CRUD test versions
+
+* Callbacks
+* Promises
+* Async/await
 
 ---
 
@@ -531,7 +555,55 @@ Azat Mardan @azat_co
 
 ---
 
-Demo Testing UI with Selenium WebDriver
+
+## Testing UI with Selenium WebDriver
+
+`code/e2e-test`
+
+---
+
+## e2e-test structure
+
+```
+/e2e-test
+  /chromedriver32
+  /node_modules
+  /test
+  google.test.js
+  package-lock.json
+  package.json
+```
+
+---
+
+```
+  "scripts": {
+    "test": "PATH=\"./chromedriver2.32/:$PATH\" mocha  --no-timeouts"
+  },
+```
+
+---
+
+```js
+var webdriver = require('selenium-webdriver'),
+  By = webdriver.By,
+  until = webdriver.until
+
+var driver = new webdriver.Builder()
+  .forBrowser('chrome')
+  .build()
+
+driver.get('http://www.google.com/ncr')
+driver.findElement(By.name('q')).sendKeys('webdriver')
+driver.findElement(By.name('q')).sendKeys(webdriver.Key.ENTER)
+driver.wait(until.titleIs('webdriver - Google Search'), 1000)
+driver.sleep(20000)
+driver.quit()
+```
+
+---
+
+## Demo Testing UI with Selenium WebDriver
 
 ---
 
@@ -546,6 +618,10 @@ Azat Mardan @azat_co
 ---
 
 ## CI/CD Using CircleCI
+
+---
+
+![inline](images/circleci.png)
 
 ---
 
@@ -640,6 +716,23 @@ database:
 Azat Mardan @azat_co
 
 ![inline right](images/nu.png)
+
+---
+
+## Useful Tools
+
+* Sinon
+* Jest
+* Jenkins
+* loadtest, artillery and jMeter
+
+---
+
+## Useful Services
+
+* Team City, TravisCI
+* AWS CodeDeploy, CodePipeline, CodeBuild
+* SauceLabs
 
 ---
 
