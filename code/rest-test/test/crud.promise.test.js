@@ -1,7 +1,7 @@
 const axios = require('axios')
 const {expect} = require('chai')
 const app = require('../server.js')
-const port = 3002
+const port = 3003
 
 before(()=>{
   return new Promise((resolve, reject) => {
@@ -50,7 +50,7 @@ describe('express rest api server', () => {
   it('updates an object', () => {
     return axios
       .put(`http://localhost:${port}/collections/test/${id}`, {name: 'Peter', email: 'peter@yahoo.com'})
-      .then(response=>response.data)      
+      .then(response=>response.data)
       .then((body) =>{
         // console.log(body, e)
         expect(typeof body).to.eql('object')
@@ -85,5 +85,5 @@ describe('express rest api server', () => {
         // console.log(body)
         expect(body.map(item=>item._id)).not.to.eql(id)
       })
-  })  
+  })
 })

@@ -1,7 +1,7 @@
 const axios = require('axios')
 const {expect} = require('chai')
 const app = require('../server.js')
-const port = 3002
+const port = 3004
 
 before(async function() {
   await app.listen(port, ()=>{console.log('server is running')})
@@ -59,5 +59,5 @@ describe('express rest api server', async () => {
     const {data: body} = await axios.get(`http://localhost:${port}/collections/test/`)
     // console.log(body)
     expect(body.map(item=>item._id)).not.to.eql(id)
-  })  
+  })
 })
