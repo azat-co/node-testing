@@ -46,7 +46,6 @@ Azat Mardan @azat_co
 * after and before
 * each and afterEach, beforeEach
 * Writing unit tests
-* (TDD+ BDD): Mocha, Expect, Jest, Superagent, Unit and Functional/Integration Testing
 
 ---
 
@@ -54,7 +53,6 @@ Azat Mardan @azat_co
 
 * Testing CRUD REST API server (Mocking)
 * Testing CRUD REST API server (real)
-* Testing GraphQL server
 
 ---
 
@@ -514,18 +512,6 @@ Demo Testing CRUD REST API server (Mocking)
 
 ---
 
-## Testing GraphQL server
-
-* GraphQL
-* Axios
-* Mocha
-
----
-
-## Demo Testing GraphQL server
-
----
-
 # Node Testing
 ## Module 4: UI and E2E Testing
 
@@ -559,11 +545,91 @@ Azat Mardan @azat_co
 
 ---
 
-## CI/CD Using CircleCI: creating yml config
+## CI/CD Using CircleCI
 
 ---
 
-## CI/CD Using AWS and Jenkins
+Creating yml config:
+
+```
+/ci-test
+  /test
+  server.js
+  package.json
+  circle.yml
+```
+
+---
+
+## CircleCI: Configuring Node 
+
+```yml
+machine:
+  node:
+    version: 8.2.0
+```
+
+---
+
+## CircleCI Node Versions
+
+CircleCI uses NVM to manage Node versions. Pre-installed versions can be found on [the Ubuntu 14.04 (default)](https://circleci.com/docs/1.0/build-image-trusty/#nodejs) and [Ubuntu 12.04 pages](https://circleci.com/docs/1.0/build-image-precise/#nodejs) respectively.
+
+---
+
+## CircleCI: Running Tests
+
+* Runs `npm test` when you specify a `test` script in package.json. 
+* Runs Mocha tests 
+* Runs any test targets in Cakefiles or Makefiles
+
+---
+
+## CircleCI: Running Tests (cont)
+
+Runs `npm i` automatically if there's `package.json`. To override:
+
+```yml
+dependencies:
+  override:
+    - npm install --dev
+```
+
+```yml
+dependencies:
+  override:
+    - npm install --production
+```
+
+---
+
+## CircleCI: Test *post* Command
+
+```yml
+test:
+  post:
+    - ./test.sh
+```
+
+---
+
+## CircleCI: Database 
+
+```yml
+database:
+  # Circle will execute the below commands
+  pre:
+    # Stop MongoDB
+    - sudo service mongodb stop
+    # Download MongoDB 3.2.3
+    - curl -Ol https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1204-3.2.3.tgz
+    # Untar it
+    - tar -zxvf mongodb-linux-x86_64-ubuntu1204-3.2.3.tgz
+    # Create data directory
+    - mkdir -p ./data/db
+    # Fork MongoDB and log to './mongod.log'. Print the log file if it failed.
+    - ./mongodb-linux-x86_64-ubuntu1204-3.2.3/bin/mongod --dbpath ./data/db --logpath ./mongod.log --fork || cat ./mongod.log
+```
 
 ---
 
@@ -577,4 +643,16 @@ Azat Mardan @azat_co
 
 ---
 
+## Further Study
+
+* For CI/CD with Amazon Web Services CodePipeline, CodeDeploy and CodeBuild: [AWS Intermediate](https://node.university/p/aws-intermediate)
+* For containers: [Node in Production](https://node.university/p/node-in-production)
+* For React, and Jest testing: React Quickly [GitHub](https://github.com/azat-co/react-quickly) and [book](https://www.manning.com/books/react-quickly?a_aid=a&a_bid=5064a2d3)
+
+---
+
 ## Summary
+
+* Testing saves time in the long-term
+* Cloud, virtualization and containers make testing easier and more dependable
+* Stick to the testing pyramind: more unit tests and fewer E2E tests
