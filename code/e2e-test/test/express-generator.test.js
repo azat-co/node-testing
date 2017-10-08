@@ -17,7 +17,7 @@ describe('Express generator website', () => {
     server = await app.listen(3000)
     driver.get(`http://${url}`)
   })
-  it.only('has heading and a welcome paragraph', async () => {
+  it('has heading and a welcome paragraph', async () => {
     const h1 = await driver.findElement(By.css('h1'))
     expect(h1).to.be.ok
     expect(await h1.getText()).to.equal('Express')
